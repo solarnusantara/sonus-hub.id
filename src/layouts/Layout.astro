@@ -1,6 +1,7 @@
- ---                            
- import '../styles/global.css'  
- --- 
+ ---
+import '../styles/global.css'
+import Navbar from '../components/Navbar.astro';
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -11,6 +12,7 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<Navbar />
 		<slot />
 	</body>
 </html>

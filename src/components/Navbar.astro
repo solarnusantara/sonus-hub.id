@@ -1,0 +1,67 @@
+---
+const navLinks = [
+  { href: "/beranda", text: "Beranda" },
+  { href: "/mitra", text: "Mitra" },
+  { href: "/suplier", text: "Suplier" },
+  { href: "/artikel", text: "Artikel" },
+  { href: "/hubungi-kami", text: "Hubungi Kami" },
+];
+---
+
+<nav class="bg-white shadow-md py-2 px-4 md:px-8">
+  <div class="container mx-auto max-w-max-desktop flex justify-between items-center">
+    <!-- Logo -->
+    <a href="/" class="flex items-center space-x-2">
+      <img src="/favicon.svg" alt="SonusHUB Logo" class="h-10 w-10">
+      <span class="font-bold text-lg text-gray-800">SonusHUB</span>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center space-x-6">
+      {navLinks.map(link => (
+        <a href={link.href} class="text-gray-600 hover:text-blue-600 transition-colors">{link.text}</a>
+      ))}
+      <a 
+        href="https://sonushub.id" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="bg-[#014AAD] text-white font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+      >
+        E-commerce
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button (Hamburger) -->
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden mt-4">
+    {navLinks.map(link => (
+      <a href={link.href} class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">{link.text}</a>
+    ))}
+    <a 
+      href="https://sonushub.id" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="block bg-[#014AAD] text-white font-semibold px-4 py-2 mt-2 rounded-lg text-center"
+    >
+      E-commerce
+    </a>
+  </div>
+</nav>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>
