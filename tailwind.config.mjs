@@ -6,6 +6,10 @@ export default {
       screens: {
         'max-desktop': '1440px',
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Oswald', 'sans-serif'],
+      },
       keyframes: {
         'fade-in-up': {
           '0%': {

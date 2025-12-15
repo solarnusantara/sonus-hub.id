@@ -5,7 +5,7 @@ import logoImage from '/public/favicon.svg'; // Path to your favicon SVG
 const { class: navClass, linkClass } = Astro.props;
 
 const navLinks = [
-  { href: "/beranda", text: "Beranda" },
+  { href: "/", text: "Beranda" },
   { href: "/mitra", text: "Mitra" },
   { href: "/suplier", text: "Suplier" },
   { href: "/artikel", text: "Artikel" },
@@ -13,8 +13,8 @@ const navLinks = [
 ];
 ---
 
-<nav class:list={[navClass, "py-2 px-4 md:px-8"]}>
-  <div class="container mx-auto max-w-max-desktop flex justify-between items-center">
+<nav class:list={[navClass]}>
+  <div class="container mx-auto max-w-max-desktop flex justify-between items-center py-2 px-4 md:px-8">
     <!-- Logo -->
     <a href="/" class="flex items-center space-x-2">
       <Image src={logoImage} alt="SonusHUB Logo" width={40} height={40} />
