@@ -45,16 +45,22 @@ const navLinks = [
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden mt-4">
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center space-y-6 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+    
+    <!-- Close Button -->
+    <button id="close-menu-button" class="absolute top-5 right-5 text-gray-800 p-2">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    
     {navLinks.map(link => (
-      <a href={link.href} class:list={[linkClass, "block py-2 px-4 text-sm hover:bg-gray-100"]}>{link.text}</a>
+      <a href={link.href} class="text-gray-800 text-2xl font-semibold hover:text-blue-600 transition-colors">{link.text}</a>
     ))}
     <a 
       href="https://sonushub.id" 
       target="_blank" 
       rel="noopener noreferrer"
-      class="block bg-[#014AAD] text-white font-semibold px-4 py-2 mt-2 rounded-lg text-center"
+      class="bg-[#014AAD] text-white font-semibold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity text-lg mt-4"
     >
       E-commerce
     </a>
@@ -63,9 +69,30 @@ const navLinks = [
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
 
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  function openMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+    mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+
+  function closeMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+    mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+
+  mobileMenuButton?.addEventListener('click', openMenu);
+  closeMenuButton?.addEventListener('click', closeMenu);
+
+  // Also close menu if a link is clicked inside the menu
+  mobileMenu?.addEventListener('click', (event) => {
+    if (event.target instanceof HTMLElement && event.target.tagName === 'A') {
+      closeMenu();
+    }
   });
 </script>
